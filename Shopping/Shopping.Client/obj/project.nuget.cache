@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/pT00wnesy4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Amir-PC\\source\\repos\\suhelaamir\\run-devops1\\Shopping\\Shopping.Client\\Shopping.Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Amir-PC\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+  ],
+  "logs": []
+}
