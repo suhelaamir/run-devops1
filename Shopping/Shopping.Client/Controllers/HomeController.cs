@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Shopping.Client.Data;
 using Shopping.Client.Models;
 
 namespace Shopping.Client.Controllers

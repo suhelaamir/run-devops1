@@ -9,3 +9,53 @@ Push your image to docker hub repository
 command: docker tag imageid (dockerhub repository name)
 now push docker image to docker hug repository
 command: docker push sudeenj/shoppingapp:latest(dockerhub image name)
+
+--Pull the Mongo image from docker
+docker pull mongo
+docker images
+--Create docker container for mongo
+docker run -d -p 27017:27017 --name shopping-mongo mongo
+--Check if the container is running
+docker ps
+--check for the logs
+docker logs -f shopping-mongo
+--docker interactive command: this command opens your bash shell inside your shopping-mongo container
+docker exec -it shopping-mongo /bin/bash
+--check the folders
+ls
+--check mongo cli is newer command
+mongosh
+--show dbs
+show dbs
+--create a new database
+use CatalogDB
+--create a new collection
+db.createCollection("products")
+--insert a new document
+db.Products.insertMany([{
+    Name = "Sony 65-inch OLED TV",
+    Category = "Electronics",
+    Description = "Sony 65-inch OLED TV",
+    ImageFile = "Electronics.jpg",
+    Price = 1500
+},
+{
+    Name = "Apple MacBook Pro 16",
+    Category = "Electronics",
+    Description = "Apple MacBook Pro 16",
+    ImageFile = "MacBook.jpg",
+    Price = 2000
+},
+{
+    Name = "Jewelry (Insured separately)",
+    Category = "Valuables",
+    Description = "Jewelry (Insured separately)",
+    ImageFile = "Jewelry.jpg",
+    Price = 900
+}])
+--command to show databases, collections and documents
+>show databases
+>show collections
+>db.Products.find({}).pretty()
+
+
