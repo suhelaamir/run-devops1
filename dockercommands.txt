@@ -57,5 +57,11 @@ db.Products.insertMany([{
 >show databases
 >show collections
 >db.Products.find({}).pretty()
-
-
+--remove container items at once
+docker ps -aq
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker rmi $(docker images -q)
+docker system prune
+--Running application with docker compose file
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
