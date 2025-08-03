@@ -40,7 +40,8 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/Shopping
         tags: |
-          $(tag)
+          #$(tag)
+          v1
 
     - upload: manifests
       artifact: manifests
