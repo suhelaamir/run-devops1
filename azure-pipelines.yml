@@ -72,8 +72,8 @@ stages:
               action: deploy
               manifests: |
                 $(Pipeline.Workspace)/manifests/shoppingapi.yml
-              imagePullSecrets: |
-                $(imagePullSecret)
+              # imagePullSecrets: |
+              #   $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
