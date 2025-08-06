@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shoppingapi
-          image: shoppingacr.azurecr.io/shoppingapi:placeholder
+          image: $(containerRegistry)/$(imageRepository):$(tag) #shoppingacr.azurecr.io/shoppingapi:placeholder
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 8080

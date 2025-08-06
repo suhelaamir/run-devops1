@@ -86,9 +86,8 @@ stages:
                 echo "Pipeline workspace: $(Pipeline.Workspace)"
                 ls -laR $(Pipeline.Workspace)/aks
             displayName: 'Debug: AmirCheck downloaded manifests'
-          
-          - script: echo "Contents of YAML manifest:" && cat $(containerRegistry)/$(imageRepository):$(tag)
-            displayName: 'Debug: Show YAML Content'
+
+          - script: echo "Contents of YAML manifestamirs:" && cat $(Pipeline.Workspace)/aks/shoppingapi.yaml
 
           - task: DownloadPipelineArtifact@2
             inputs:
