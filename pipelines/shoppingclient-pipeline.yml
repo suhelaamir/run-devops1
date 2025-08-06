@@ -82,7 +82,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/shoppingclient.yml
+                $(Pipeline.Workspace)/aks/shoppingclient.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
