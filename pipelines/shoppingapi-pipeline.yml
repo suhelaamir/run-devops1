@@ -2,8 +2,16 @@
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+# trigger:
+# - main
 trigger:
-- main
+    branches:
+      include:
+      - main
+    paths:
+      include:
+      - Shopping/Shopping.API/*
+      - aks/shoppingapi.yaml
 
 resources:
 - repo: self
@@ -14,9 +22,10 @@ variables:
   dockerRegistryServiceConnection: 'e0d4eb93-7d73-4896-a59e-080ca576b22f'
   imageRepository: 'shoppingapi'
   containerRegistry: 'shoppingsacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'Shopping/Shopping.API/Dockerfile'
+  #'**/Dockerfile'
   tag: '$(Build.BuildId)'
-  #imagePullSecret: 'shoppingsacr1022a5aa-auth'
+  imagePullSecret: 'shoppingsacr1022a5aa-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -42,8 +51,10 @@ stages:
         tags: |
           $(tag)
 
-    - upload: manifests
-      artifact: manifests
+    # - upload: manifests
+    #   artifact: manifests
+    - upload: aks
+      artifact: aks
 
 - stage: Deploy
   displayName: Deploy stage
@@ -59,21 +70,21 @@ stages:
       runOnce:
         deploy:
           steps:
-          # - task: KubernetesManifest@0
-          #   displayName: Create imagePullSecret
-          #   inputs:
-          #     action: createSecret
-          #     secretName: $(imagePullSecret)
-          #     dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
 
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/shoppingapi.yml
-              # imagePullSecrets: |
-              #   $(imagePullSecret)
+                $(Pipeline.Workspace)/aks/shoppingapi.yml
+              imagePullSecrets: |
+                $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
