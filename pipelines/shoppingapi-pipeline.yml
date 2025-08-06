@@ -53,8 +53,13 @@ stages:
 
     # - upload: manifests
     #   artifact: manifests
-    - upload: aks
-      artifact: aks
+    # - upload: aks
+    #   artifact: aks
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Build.SourcesDirectory)/aks'
+        artifact: 'aks'
+
 
 - stage: Deploy
   displayName: Deploy stage
