@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shoppingapi
-          image: shoppingacr.azurecr.io/shoppingapi:v1
+          image: shoppingacr.azurecr.io/shoppingapi:placeholder
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 8080
@@ -36,7 +36,7 @@ spec:
               memory: "128Mi"
               cpu: "0.3"
       imagePullSecrets:
-        - name: acr-secret
+        - name: shoppinsgacrd9d3-auth
 ---
 apiVersion: v1
 kind: Service
