@@ -80,8 +80,11 @@ stages:
           - script: |
                 echo "Pipeline workspace: $(Pipeline.Workspace)"
                 ls -laR $(Pipeline.Workspace)/aks
-                displayName: 'Debug: Check downloaded manifests'
-
+            displayName: 'Debug: AmirCheck downloaded manifests'
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifact: 'aks'
+              path: $(Pipeline.Workspace)
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
