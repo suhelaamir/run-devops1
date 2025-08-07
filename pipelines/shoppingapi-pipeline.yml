@@ -94,7 +94,7 @@ stages:
               sed -i 's|__TAG__|$(Build.BuildId)|g' $(Pipeline.Workspace)/aks/shoppingapi.yaml
             displayName: 'Replace image tag using sed'
 
-          - script: echo "Contents of YAML manifest:" && cat $(Pipeline.Workspace)/aks/shoppingapi.yaml
+          - script: echo "Contents of YAML manifests:" && cat $(Pipeline.Workspace)/aks/shoppingapi.yaml
             displayName: 'Debug: Show YAML Content'
 
           - task: KubernetesManifest@0
