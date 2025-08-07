@@ -76,7 +76,12 @@ stages:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+          - script: |
+              sed -i 's|__TAG__|$(Build.BuildId)|g' $(Pipeline.Workspace)/aks/shoppingclient.yaml
+            displayName: 'Replace image tag using sed'
 
+          - script: echo "Contents of YAML manifests:" && cat $(Pipeline.Workspace)/aks/shoppingclient.yaml
+            displayName: 'Debug: Show YAML Content'
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
