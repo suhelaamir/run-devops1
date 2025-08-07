@@ -10,11 +10,15 @@ namespace Shopping.API.Controllers;
 public class ProductController
 {
     private readonly ILogger<ProductController> _logger;
-    private readonly ProductContext _productContext;
-    public ProductController(ILogger<ProductController> logger, ProductContext productContext)
+    //private readonly ProductContext _productContext;
+    //public ProductController(ILogger<ProductController> logger, ProductContext productContext)
+    //{
+    //    _logger = logger?? throw new ArgumentNullException(nameof(logger));
+    //    _productContext = productContext?? throw new ArgumentNullException(nameof(productContext));
+    //}
+    public ProductController(ILogger<ProductController> logger)
     {
-        _logger = logger?? throw new ArgumentNullException(nameof(logger));
-        _productContext = productContext?? throw new ArgumentNullException(nameof(productContext));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
     [HttpGet]
     public async Task<IEnumerable<Product>> Get()
@@ -26,10 +30,10 @@ public class ProductController
         //    Name = $"Product {index}",
 
         //}).ToArray();
-        //return ProductContext.Products;
-        return await _productContext
-                                .Products
-                                .Find(_ => true)
-                                .ToListAsync();
+        return ProductContext.Products;
+        //return await _productContext
+        //                        .Products
+        //                        .Find(_ => true)
+        //                        .ToListAsync();
     }
 }
