@@ -19,13 +19,13 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'fffa8691-14b3-4df3-ae44-fdb62b5a1e38'
+  dockerRegistryServiceConnection: 'f706dc0f-3898-4654-8072-ba69b661fed1'
   imageRepository: 'shoppingapi'
-  containerRegistry: 'shoppinsgacr.azurecr.io'
+  containerRegistry: 'shoppingacr.azurecr.io'
   dockerfilePath: 'Shopping/Shopping.API/Dockerfile'
   #'**/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'shoppinsgacr1441bfb3-auth'
+  imagePullSecret: 'shoppingacr12d1-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -70,7 +70,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'suhelaamirrundevops1-1308.default'
+    environment: 'suhelaamirrundevops1-4319.default'
     strategy:
       runOnce:
         deploy:
